@@ -1,0 +1,41 @@
+[
+  {
+    "route": "",
+    "flowLayout": true,
+    "params": {},
+    "title": "Main Layout",
+    "children": [
+      {
+        "route": "",
+        "menu": {
+          "exclude": true
+        },
+        "flowLayout": true,
+        "params": {},
+        "title": "Main"
+      },
+      {
+        "route": "banda-list",
+        "title": "Task List",
+        "menu": {
+          "icon": "vaadin:clipboard-check",
+          "order": 1,
+          "title": "Task List"
+        },
+        "flowLayout": true,
+        "params": {}
+      },
+      {
+        "route": "task-list",
+        "title": "Task List",
+        "menu": {
+          "icon": "vaadin:clipboard-check",
+          "order": 1,
+          "title": "Task List"
+        },
+        "flowLayout": true,
+        "params": {}
+      }
+    ]
+  }
+]
