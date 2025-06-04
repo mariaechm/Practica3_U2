@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "nombre": "Italo Chica",
+        "nacionalidad": "Ecuatoriana"
+    },
+    {
+        "id": 2,
+        "nombre": "Reik",
+        "nacionalidad": "Mexicana"
+    }
+]
