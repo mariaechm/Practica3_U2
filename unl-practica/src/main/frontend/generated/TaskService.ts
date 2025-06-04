@@ -1,5 +1,5 @@
 import { EndpointRequestInit as EndpointRequestInit_1 } from "@vaadin/hilla-frontend";
-import type Task_1 from "./com/unl/practica/taskmanagement/domain/Task.js";
+import type Task_1 from "./com/unl/pratica/taskmanagement/domain/Task.js";
 import type Pageable_1 from "./com/vaadin/hilla/mappedtypes/Pageable.js";
 import client_1 from "./connect-client.default.js";
 async function createTask_1(description: string, dueDate: string | undefined, init?: EndpointRequestInit_1): Promise<void> { return client_1.call("TaskService", "createTask", { description, dueDate }, init); }

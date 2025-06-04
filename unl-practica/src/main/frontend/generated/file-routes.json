@@ -1,7 +1,7 @@
 [
   {
     "route": "",
-    "flowLayout": true,
+    "flowLayout": false,
     "params": {},
     "title": "Main Layout",
     "children": [
@@ -10,19 +10,19 @@
         "menu": {
           "exclude": true
         },
-        "flowLayout": true,
+        "flowLayout": false,
         "params": {},
         "title": "Main"
       },
       {
-        "route": "banda-list",
-        "title": "Task List",
+        "route": "cancion-list",
+        "title": "Canción",
         "menu": {
-          "icon": "vaadin:clipboard-check",
+          "icon": "vaadin:music",
           "order": 1,
-          "title": "Task List"
+          "title": "Canción"
         },
-        "flowLayout": true,
+        "flowLayout": false,
         "params": {}
       },
       {
@@ -33,7 +33,7 @@
           "order": 1,
           "title": "Task List"
         },
-        "flowLayout": true,
+        "flowLayout": false,
         "params": {}
       }
     ]

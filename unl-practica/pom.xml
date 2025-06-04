@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.pratica.unl</groupId>
+    <groupId>com.unl.pratica</groupId>
     <artifactId>unl-practica</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -12,7 +11,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <vaadin.version>24.7.6</vaadin.version>
+        <vaadin.version>24.7.4</vaadin.version>
         <archunit.version>1.4.1</archunit.version>
     </properties>
 
@@ -81,6 +80,13 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+
         <!-- Testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -115,12 +121,11 @@
             <plugin>
                 <groupId>com.diffplug.spotless</groupId>
                 <artifactId>spotless-maven-plugin</artifactId>
-                <version>2.44.4</version>
+                <version>2.43.0</version>
                 <configuration>
                     <java>
-                        <toggleOffOn/>
                         <eclipse>
-                            <version>4.35</version>
+                            <version>4.33</version>
                             <file>${project.basedir}/eclipse-formatter.xml</file>
                         </eclipse>
                     </java>
