@@ -92,5 +92,5 @@ public class AdapterDao <T> implements InterfaceDao<T> {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'get'");
     }
-    
+ 
 }

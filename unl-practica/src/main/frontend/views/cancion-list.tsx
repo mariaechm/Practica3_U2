@@ -175,10 +175,19 @@ function CancionEntryForm(props: CancionEntryFormProps) {
 
 //Lista de Canciones
 export default function CancionView() {
+    const [items, setItems] = useState([]);
+    const callData = () => {
+      CancionService.listAll().then(function(data){
+        setItems(data);
+      });
+    };
 
-  const dataProvider = useDataProvider<Cancion>({
+   useEffect(() => {
+    callData();
+  },[]);
+ /* const dataProvider = useDataProvider<Cancion>({
     list: () => CancionService.listCancion(),
-  });
+  });*/
 
   function indexIndex({ model }: { model: GridItemModel<Cancion> }) {
     return (

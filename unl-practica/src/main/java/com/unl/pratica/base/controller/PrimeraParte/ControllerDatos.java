@@ -11,7 +11,7 @@ public class ControllerDatos {
     private Integer[] matriz;
     private LinkedList<Integer> lista;
 
-    public void cargar(String ruta) {
+    public void cargar(String ruta) { //Lee la data 
         lista = new LinkedList<>();
         matriz = new Integer[1000];
         int count = 0;
@@ -39,7 +39,7 @@ public class ControllerDatos {
     }
 
     // Detectar repetidos ARREGLO
-    public Integer[] detectarArreglo() {
+    /*public Integer[] detectarArreglo() {
         java.util.ArrayList<Integer> vistos = new java.util.ArrayList<>();
         java.util.ArrayList<Integer> repetidos = new java.util.ArrayList<>();
 
@@ -102,62 +102,87 @@ public class ControllerDatos {
         }
 
         return repetidos.toArray(new Integer[0]);
+    }*/
+
+    //Metodos de Ordenacion
+
+    //METODO QUICKSORT
+    private void quick_sort (Integer arr[], int inicio, int fin){
+        if (inicio < fin) {
+            int particionIndex = particion(arr, inicio, fin);
+
+            quick_sort(arr, inicio, particionIndex -1);
+            quick_sort(arr, particionIndex + 1, fin);
+        }
+    }
+
+    private int particion(Integer arr[], int inicio, int fin){
+       int pivot = arr[fin]; //pivot --> pivote
+       int i = (inicio -1); 
+
+       for (int j =  inicio; j < fin; j++){
+            if (arr[j] <= pivot) {
+                i++;
+
+                int swapTemp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = swapTemp;
+            }
+       }
+       int swapTemp = arr[i + 1];
+        arr[i + 1] = arr[fin];
+        arr[fin] = swapTemp;
+
+        return i + 1;
+    }
+
+    //METODO SHELLSORT
+     public void shell_sort(Integer arrayToSort[]) {
+        int n = arrayToSort.length;
+
+        for (int gap = n / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < n; i++) {
+                int key = arrayToSort[i];
+                int j = i;
+                while (j >= gap && arrayToSort[j - gap] > key) {
+                    arrayToSort[j] = arrayToSort[j - gap];
+                    j -= gap;
+                }
+                arrayToSort[j] = key;
+            }
+        }
+    }
+
+    public void quick_sort_order() {
+        if (!lista.isEmpty()) {
+            Integer arr[] = lista.toArray();
+            long startTime = System.currentTimeMillis();
+            quick_sort(arr, 0, arr.length - 1);
+            long endTime = System.currentTimeMillis() - startTime;
+            System.out.println("El tiempo que se ha demorado Quicksort es: " + endTime );
+            lista.toList(arr);
+        }        
+    }
+
+    public void shell_sort_order() {
+        if (!lista.isEmpty()) {
+            Integer arr[] = lista.toArray();
+            long startTime = System.currentTimeMillis();
+            shell_sort(arr);
+            long endTime = System.currentTimeMillis() - startTime;
+            System.out.println("El tiempo que se ha demorado Shellsort es: " + endTime );
+            lista.toList(arr);
+        }        
     }
 
     public static void main(String[] args) {
         ControllerDatos p = new ControllerDatos();
         p.cargar("/home/maria/Escritorio/practicas/unl-practica/src/main/java/com/unl/pratica/base/controller/PrimeraParte/data.txt");
 
-        long[] tiemposArreglo = new long[3];
-        long[] tiemposLista = new long[3];
+        System.out.println("\nQUICKSORT");
+        p.quick_sort_order();
 
-        Integer[] repetidosArreglo = null;
-        Integer[] repetidosLista = null;
-
-        // Medición para arreglo
-        for (int i = 0; i < 3; i++) {
-            long inicio = System.nanoTime();
-            repetidosArreglo = p.detectarArreglo();
-            long fin = System.nanoTime();
-            tiemposArreglo[i] = fin - inicio;
-        }
-
-        // Medición para lista enlazada
-        for (int i = 0; i < 3; i++) {
-            long inicio = System.nanoTime();
-            repetidosLista = p.detectarLista();
-            long fin = System.nanoTime();
-            tiemposLista[i] = fin - inicio;
-        }
-
-        // resultados arreglo
-        System.out.println("Números repetidos en ARREGLO:");
-        if (repetidosArreglo.length == 0) {
-            System.out.println("No hay números repetidos.");
-        } else {
-            for (Integer n : repetidosArreglo) {
-                System.out.println(n);
-            }
-        }
-        System.out.println("Total distintos repetidos en ARREGLO: " + repetidosArreglo.length);
-
-        //resultados lista
-        System.out.println("\nNúmeros repetidos en LISTA:");
-        if (repetidosLista.length == 0) {
-            System.out.println("No hay números repetidos.");
-        } else {
-            for (Integer n : repetidosLista) {
-                System.out.println(n);
-            }
-        }
-        System.out.println("Total de numeros repetidos en LISTA: " + repetidosLista.length);
-
-        // Tabla comparativa de tiempos
-        System.out.println("\n-------------------------------------------");
-        System.out.println("\nTabla comparativa de tiempos (nanosegundos):");
-        System.out.printf("%-10s %-20s %-20s%n", "Iteración", "Arreglo", "Lista Enlazada");
-        for (int i = 0; i < 3; i++) {
-            System.out.printf("%-10d %-20d %-20d%n", (i + 1), tiemposArreglo[i], tiemposLista[i]);
-        }
+        System.out.println("\nSHELLSORT");
+        p.shell_sort_order();
     }
 }
