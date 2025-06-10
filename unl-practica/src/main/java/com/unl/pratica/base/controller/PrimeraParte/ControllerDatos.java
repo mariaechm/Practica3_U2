@@ -38,74 +38,7 @@ public class ControllerDatos {
         }
     }
 
-    // Detectar repetidos ARREGLO
-    /*public Integer[] detectarArreglo() {
-        java.util.ArrayList<Integer> vistos = new java.util.ArrayList<>();
-        java.util.ArrayList<Integer> repetidos = new java.util.ArrayList<>();
-
-        for (int i = 0; i < matriz.length; i++) {
-            int actual = matriz[i];
-            boolean yaVisto = false;
-            for (int j = 0; j < vistos.size(); j++) {
-                if (vistos.get(j).equals(actual)) {
-                    yaVisto = true;
-                    break;
-                }
-            }
-            if (yaVisto) {
-                boolean yaRepetido = false;
-                for (int j = 0; j < repetidos.size(); j++) {
-                    if (repetidos.get(j).equals(actual)) {
-                        yaRepetido = true;
-                        break;
-                    }
-                }
-                if (!yaRepetido) {
-                    repetidos.add(actual);
-                }
-            } else {
-                vistos.add(actual);
-            }
-        }
-
-        return repetidos.toArray(new Integer[0]);
-    }
-
-    // Detectar repetidos LISTA ENLAZADA
-    public Integer[] detectarLista() {
-        java.util.ArrayList<Integer> vistos = new java.util.ArrayList<>();
-        java.util.ArrayList<Integer> repetidos = new java.util.ArrayList<>();
-
-        for (int i = 0; i < lista.getLength(); i++) {
-            Integer actual = lista.get(i);
-            boolean yaVisto = false;
-            for (int j = 0; j < vistos.size(); j++) {
-                if (vistos.get(j).equals(actual)) {
-                    yaVisto = true;
-                    break;
-                }
-            }
-            if (yaVisto) {
-                boolean yaRepetido = false;
-                for (int j = 0; j < repetidos.size(); j++) {
-                    if (repetidos.get(j).equals(actual)) {
-                        yaRepetido = true;
-                        break;
-                    }
-                }
-                if (!yaRepetido) {
-                    repetidos.add(actual);
-                }
-            } else {
-                vistos.add(actual);
-            }
-        }
-
-        return repetidos.toArray(new Integer[0]);
-    }*/
-
     //Metodos de Ordenacion
-
     //METODO QUICKSORT
     private void quick_sort (Integer arr[], int inicio, int fin){
         if (inicio < fin) {

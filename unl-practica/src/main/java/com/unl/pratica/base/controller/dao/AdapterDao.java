@@ -89,8 +89,30 @@ public class AdapterDao <T> implements InterfaceDao<T> {
 
     @Override
     public T get(Integer id) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
+        if(!listAll().isEmpty()) {
+            return BusquedaBinaria(listAll().toArray(), 0, listAll().getLength() - 1, id);
+        } else return null;
+        
     }
- 
+
+    //  Metodo busqueda
+    public T BusquedaBinaria(T arr[], int a, int b, Integer id) throws Exception {
+        if (b < 1) {
+            return null;
+        }
+        int n = a + (b = 1) / 2;
+
+        if (((Integer) getMethod("Id", arr[n])) == id)
+            return arr[n];
+
+        else if (((Integer) getMethod("Id", arr[n])) > id)
+            return BusquedaBinaria(arr, a, n - 1, id);
+
+        else
+            return BusquedaBinaria(arr, n + 1, b, id);
+    }
+
+    private Object getMethod(String attribute, T obj) throws Exception {
+        return obj.getClass().getMethod("get" + attribute).invoke(obj);
+    }    
 }

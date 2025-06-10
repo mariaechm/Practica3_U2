@@ -1,1 +1,92 @@
-[{"id":0,"nombre":"maria se fue","id_genero":2,"duracion":456,"url":"https://www.youtube.com/watch?v\u003dOxTitluEfn4","tipo":"VIRTUAL","id_album":1},{"id":1,"nombre":"Gnaly","id_genero":1,"duracion":218,"url":"https://www.youtube.com/watch?v\u003dR2-yomhYAj4","tipo":"VIRTUAL","id_album":1},{"id":2,"nombre":"Ojos azules","id_genero":1,"duracion":300,"url":"https://www.youtube.com/watch?v\u003dR2-yomhYAj4","tipo":"FISICO","id_album":2},{"id":3,"nombre":"Hands Up","id_genero":1,"duracion":320,"url":"https://www.youtube.com/watch?v\u003drqcNJ2Lqd-8\u0026list\u003dRDGMEMCMFH2exzjBeE_zAHHJOdxg\u0026start_radio\u003d1\u0026rv\u003dR2-yomhYAj4","tipo":"VIRTUAL","id_album":1},{"id":4,"nombre":"Ya me entere","id_genero":2,"duracion":325,"url":"https://www.youtube.com/watch?v\u003drqcNJ2Lqd-8\u0026list\u003dRDGMEMCMFH2exzjBeE_zAHHJOdxg\u0026start_radio\u003d1\u0026rv\u003dR2-yomhYAj4","tipo":"FISICO","id_album":2},{"id":5,"nombre":"Cuaderno","id_genero":2,"duracion":240,"url":"https://www.youtube.com/","tipo":"VIRTUAL","id_album":2},{"id":6,"nombre":"flor","id_genero":2,"duracion":330,"url":"https://www.youtube.com/","tipo":"VIRTUAL","id_album":2},{"id":7,"nombre":"telefono","id_genero":1,"duracion":210,"url":"https://www.youtube.com/","tipo":"FISICO","id_album":2}]
+[
+    {
+        "id": 0,
+        "nombre": "maria se fue",
+        "id_genero": 2,
+        "duracion": 456,
+        "url": "https://www.youtube.com/watch?v\u003dOxTitluEfn4",
+        "tipo": "VIRTUAL",
+        "id_album": 1
+    },
+    {
+        "id": 1,
+        "nombre": "Gnaly",
+        "id_genero": 1,
+        "duracion": 218,
+        "url": "https://www.youtube.com/watch?v\u003dR2-yomhYAj4",
+        "tipo": "VIRTUAL",
+        "id_album": 1
+    },
+    {
+        "id": 2,
+        "nombre": "Ojos azules",
+        "id_genero": 1,
+        "duracion": 300,
+        "url": "https://www.youtube.com/watch?v\u003dR2-yomhYAj4",
+        "tipo": "FISICO",
+        "id_album": 2
+    },
+    {
+        "id": 3,
+        "nombre": "Hands Up",
+        "id_genero": 1,
+        "duracion": 320,
+        "url": "https://www.youtube.com/watch?v\u003drqcNJ2Lqd-8\u0026list\u003dRDGMEMCMFH2exzjBeE_zAHHJOdxg\u0026start_radio\u003d1\u0026rv\u003dR2-yomhYAj4",
+        "tipo": "VIRTUAL",
+        "id_album": 1
+    },
+    {
+        "id": 4,
+        "nombre": "Ya me entere",
+        "id_genero": 2,
+        "duracion": 325,
+        "url": "https://www.youtube.com/watch?v\u003drqcNJ2Lqd-8\u0026list\u003dRDGMEMCMFH2exzjBeE_zAHHJOdxg\u0026start_radio\u003d1\u0026rv\u003dR2-yomhYAj4",
+        "tipo": "FISICO",
+        "id_album": 2
+    },
+    {
+        "id": 5,
+        "nombre": "Cuaderno",
+        "id_genero": 2,
+        "duracion": 240,
+        "url": "https://www.youtube.com/",
+        "tipo": "VIRTUAL",
+        "id_album": 2
+    },
+    {
+        "id": 6,
+        "nombre": "flor",
+        "id_genero": 2,
+        "duracion": 330,
+        "url": "https://www.youtube.com/",
+        "tipo": "VIRTUAL",
+        "id_album": 2
+    },
+    {
+        "id": 7,
+        "nombre": "telefono",
+        "id_genero": 1,
+        "duracion": 210,
+        "url": "https://www.youtube.com/",
+        "tipo": "FISICO",
+        "id_album": 2
+    },
+    {
+        "id": 8,
+        "nombre": "Hasta la Locura",
+        "id_genero": 2,
+        "duracion": 310,
+        "url": "https://www.youtube.com/watch?v\u003dUfuJqwe6Hjw",
+        "tipo": "FISICO",
+        "id_album": 2
+    },
+    {
+        "id": 9,
+        "nombre": "Amantes",
+        "id_genero": 1,
+        "duracion": 210,
+        "url": "https://www.youtube.com/",
+        "tipo": "VIRTUAL",
+        "id_album": 1
+    }
+]
