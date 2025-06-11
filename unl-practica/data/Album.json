@@ -8,5 +8,15 @@
         "id": 2,
         "nombre": "Mundos Opuestos",
         "fecha": "May 19, 2025, 3:38:28 PM"
+    },
+    {
+        "id": 3,
+        "nombre": "Antifragile",
+        "fecha": "May 19, 2025, 3:38:28 PM"
+    },
+    {
+        "id": 4,
+        "nombre": "Ruby",
+        "fecha": "May 19, 2025, 3:38:28 PM"
     }
 ]

@@ -216,16 +216,12 @@ export default function CancionView() {
   const texto = useSignal('');
   const itemSelect = [
     {
-      label: 'Nombre',
+      label: 'Cancion',
       value: 'nombre',
     },
     {
       label: 'Album',
       value: 'album',
-    },
-    {
-      label: 'Nombre',
-      value: 'nombre',
     },
     {
       label: 'Genero',
@@ -237,10 +233,14 @@ export default function CancionView() {
       value: 'tipo',
     },
   ];
+
   const search = async () => {
     try {
       console.log(criterio.value + " " + texto.value);
-      CancionService.buscar(criterio.value, texto.value, 0).then(function (data) {
+      /*Busqueda Lineal*/
+      //CancionService.buscarLineal(criterio.value, texto.value,0 ).then(function (data) {
+      /*Busqueda BinariaLineal*/
+     CancionService.buscarBinariaLineal(criterio.value, texto.value,1 ).then(function (data) {
         setItems(data);
       });
 
@@ -267,13 +267,13 @@ export default function CancionView() {
         <Select items={itemSelect}
           value={criterio.value}
           onValueChanged={(evt) => (criterio.value = evt.detail.value)}
-          placeholder="Selecione un cirterio">
+          placeholder="Selecione un criterio">
 
 
         </Select>
 
         <TextField
-          placeholder="Search"
+          placeholder="Buscar"
           style={{ width: '50%' }}
           value={texto.value}
           onValueChanged={(evt) => (texto.value = evt.detail.value)}

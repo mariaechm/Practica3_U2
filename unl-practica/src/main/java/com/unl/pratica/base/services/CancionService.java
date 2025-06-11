@@ -117,11 +117,19 @@ public class CancionService {
 
     public List<HashMap> order(String attribute, Integer type) throws Exception {
         boolean isNumero = attribute.equalsIgnoreCase("duracion") || attribute.equalsIgnoreCase("id");
-        return Arrays.asList(dc.orderByCancion(type, attribute, isNumero).toArray());
+        return Arrays.asList(dc.orderQ(type, attribute, isNumero).toArray());
     }
 
-    public List<HashMap> buscar(String attribute, String text, Integer type) throws Exception {
-        LinkedList<HashMap<String, String>> lista = dc.buscar(attribute, text, type);
+    public List<HashMap> buscarLineal(String attribute, String text, Integer type) throws Exception {
+        LinkedList<HashMap<String, String>> lista = dc.buscarLineal(attribute, text, type);
+        if (!lista.isEmpty())
+            return Arrays.asList(lista.toArray());
+        else
+            return new ArrayList<>();
+    }
+
+    public List<HashMap> buscarBinariaLineal(String attribute, String text, Integer type) throws Exception {
+        LinkedList<HashMap<String, String>> lista = dc.buscarBinariaLineal(attribute, text, type);
         if (!lista.isEmpty())
             return Arrays.asList(lista.toArray());
         else

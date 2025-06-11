@@ -87,63 +87,25 @@ public class DaoCancion extends AdapterDao<Cancion> {
         return aux;
     }
 
-    // Ordenamiento
-    /*
-     * public LinkedList<HashMap<String, String>> orderByCancion(Integer type,
-     * String attribute) throws Exception {
-     * LinkedList<HashMap<String, String>> lista = all();
-     * if (!lista.isEmpty()) {
-     * HashMap arr[] = lista.toArray();
-     * int n = arr.length;
-     * if (type == Utiles.ASCEDENTE) {
-     * for (int i = 0; i < n - 1; i++) {
-     * int min_idx = i;
-     * for (int j = i + 1; j < n; j++)
-     * if (arr[j].get(attribute).toString().toLowerCase()
-     * .compareTo(arr[min_idx].get(attribute).toString().toLowerCase()) < 0) {
-     * min_idx = j;
-     * }
-     * 
-     * HashMap temp = arr[min_idx];
-     * arr[min_idx] = arr[i];
-     * arr[i] = temp;
-     * }
-     * } else {
-     * for (int i = 0; i < n - 1; i++) {
-     * int min_idx = i;
-     * for (int j = i + 1; j < n; j++)
-     * if (arr[j].get(attribute).toString().toLowerCase()
-     * .compareTo(arr[min_idx].get(attribute).toString().toLowerCase()) > 0) {
-     * min_idx = j;
-     * }
-     * 
-     * HashMap temp = arr[min_idx];
-     * arr[min_idx] = arr[i];
-     * arr[i] = temp;
-     * }
-     * }
-     * }
-     * return lista;
-     * }
-     */
-
+    // METODO DE ORDENACION
+    /*--------INICIO------------*/
     // QuickSort
     private int partition(HashMap<String, String>[] arr, int inicio, int fin, Integer type, String attribute,
             boolean isEntero) {
         HashMap<String, String> pivot = arr[fin];
         int i = (inicio - 1); // toma el elemento que se compara con los demas
 
-        for (int j = inicio; j < fin; j++) { // recorrer los elementos
+        for (int j = inicio; j < fin; j++) { // recorre los elementos
             int compare;
-            if (isEntero) { // si es entero convierte los valores a doubles y los compara
+            if (isEntero) { // si es entero, convierte los valores a doubles y los compara
                 Double valJ = Double.parseDouble(arr[j].get(attribute));
                 Double valPivot = Double.parseDouble(pivot.get(attribute));
                 compare = valJ.compareTo(valPivot);
-            } else { // si es attribute(STring) compar como cadenas
+            } else { // si es attribute(STring) compara como cadenas
                 compare = arr[j].get(attribute).toLowerCase().compareTo(pivot.get(attribute).toLowerCase());
             }
-            boolean condition = (type == Utiles.ASCEDENTE) ? (compare < 0) : (compare > 0);
 
+            boolean condition = (type == Utiles.ASCEDENTE) ? (compare < 0) : (compare > 0);
             if (condition) {
                 i++;
                 HashMap<String, String> swapTemp = arr[i];
@@ -158,7 +120,7 @@ public class DaoCancion extends AdapterDao<Cancion> {
         return i + 1;
     }
 
-    // QuickSort para atributos String
+    // Metodo QuickSort para Atributos tipo String
     private void quickSortS(HashMap<String, String>[] arr, int inicio, int fin, Integer type, String attribute) {
         if (inicio < fin) {
             int partitionIndex = partition(arr, inicio, fin, type, attribute, false);
@@ -167,7 +129,7 @@ public class DaoCancion extends AdapterDao<Cancion> {
         }
     }
 
-    // QuickSort para atributos enteros
+    // Metod QuickSort para atributos enteros
     private void quickSortE(HashMap<String, String>[] arr, int inicio, int fin, Integer type, String attribute) {
         if (inicio < fin) {
             int partitionIndex = partition(arr, inicio, fin, type, attribute, true);
@@ -176,13 +138,11 @@ public class DaoCancion extends AdapterDao<Cancion> {
         }
     }
 
-    // Ordenar por atributo s
 
-    public LinkedList<HashMap<String, String>> orderByCancion(Integer type, String attribute, boolean isNumero)
+    // Ordenar por atributos(String, enteros)
+    /*Metodo que llama a Quicksort dependiento el tipo de dato sea String o Entero */
+    public LinkedList<HashMap<String, String>> orderQ(Integer type, String attribute, boolean isNumero)
             throws Exception {
-        if (attribute.equalsIgnoreCase("id_album") || attribute.equalsIgnoreCase("id_genero")) {
-            throw new IllegalArgumentException("No se permite ordenar por id_album ni id_genero.");
-        }
         LinkedList<HashMap<String, String>> lista = all();
         if (!lista.isEmpty()) {
             HashMap<String, String>[] arr = lista.toArray();
@@ -195,9 +155,11 @@ public class DaoCancion extends AdapterDao<Cancion> {
         }
         return lista;
     }
+    /*--------FIN------------*/
 
-    // BUSQUEDA
-    public LinkedList<HashMap<String, String>> buscar(String attribute, String text, Integer type) throws Exception {
+    /*------------------------------------------------------------------------------- */
+    // Busqueda Lineal
+    public LinkedList<HashMap<String, String>> buscarLineal(String attribute, String text, Integer type) throws Exception {
         LinkedList<HashMap<String, String>> lista = all();
         LinkedList<HashMap<String, String>> resp = new LinkedList<>();
 
@@ -234,15 +196,94 @@ public class DaoCancion extends AdapterDao<Cancion> {
         }
         return resp;
     }
+    /*------------------------------------------------------------------------------- */
 
-    private Integer bynaryLineal (HashMap<String, String>[] array, String attribute, String text) { 
+    //Busqueda linealBinaria
+    public LinkedList<HashMap<String, String>> buscarBinariaLineal(String attribute, String text, Integer type) throws Exception {
+        LinkedList<HashMap<String, String>> lista = all(); //transforma la data a hasmap
+        LinkedList<HashMap<String, String>> resp = new LinkedList<>();
+
+        if (!lista.isEmpty()) {
+            //ordenamos lista
+            lista = orderQ(Utiles.ASCEDENTE, attribute, false);
+            //transformamos la lista en arreglo
+            HashMap<String,String>[] arr = lista.toArray();
+            //extraemos el punto medio del arreglo
+            Integer n = binariaLineal(arr, attribute, text);
+            System.out.println("la n es la mitad "+n);
+            switch (type) {
+                case 1://UTiles.START
+                    //derecha                            
+                    if (n > 0) { // desde el medio a derecha
+                        for(int i = n; i < arr.length;i++) {
+                            if (arr[i].get(attribute).toString().toLowerCase().startsWith(text.toLowerCase())) {
+                                resp.add(arr[i]); 
+                            }
+                        }
+                    }else if ( n < 0){ //si n es menor a 0 negativo *-1 comenzamos desde la izquierda osea 0 hasta n, hasta la mitad
+                        //escogemos izquierda desde o hasta n
+                        n *= -1;
+                        for(int i = 0; i <n;i++){
+                            if (arr[i].get(attribute).toString().toLowerCase().startsWith(text)) {
+                                resp.add(arr[i]); 
+                            }
+                        }
+                      }else{//si es 0 hacemos una busquda normal
+                        //escogermos todo
+                        for(int i = 0; i <arr.length;i++){
+                            if (arr[i].get(attribute).toString().toLowerCase().startsWith(text)) {
+                                resp.add(arr[i]); 
+                            }
+                        }
+                    }
+
+                    break;
+                case 2://Utiles.END
+                    //derecha                            
+                    if (n > 0) { // del medio a derecha
+                        for(int i = n; i < arr.length;i++) {
+                            if (arr[i].get(attribute).toString().toLowerCase().startsWith(text.toLowerCase())) {
+                                resp.add(arr[i]); 
+                            }
+                        }
+                    }else if ( n < 0){ //si n es menor a 0 negativo *-1 comenzamos desde la izquierda osea 0 hasta n, hasta la mitad
+                        //escogemos izquierda desde o hasta n
+                        n *= -1;
+                        for(int i = 0; i <n;i++){
+                            if (arr[i].get(attribute).toString().toLowerCase().startsWith(text)) {
+                                resp.add(arr[i]); 
+                            }
+                        }
+                      }else{//si es 0 hacemos una busquda normal
+                        //escogermos todo
+                        for(int i = 0; i <arr.length;i++){
+                            if (arr[i].get(attribute).toString().toLowerCase().startsWith(text)) {
+                                resp.add(arr[i]); 
+                            }
+                        }
+                    }
+                    break;
+                default:
+                        //busquda lineal normal
+                    for (int i = 0; i <arr.length;i++) {
+                        if (arr[i].get(attribute).toString().toLowerCase().contains(text.toLowerCase())) {
+                            resp.add(arr[i]);
+                        }
+                    }
+                    break;
+            }
+        }
+        return resp;
+    }
+
+    private Integer binariaLineal (HashMap<String, String>[] array, String attribute, String text) { 
         Integer half = 0; 
-        if (!(array.length==6) && !text.isEmpty()) { 
+        if (!(array.length==0 ) && !text.isEmpty()) { 
             half = array.length / 2; 
             int aux = 0; 
-            if(text.trim().toLowerCase().charAt(8) > array[half].get(attribute).toString().trim().toLowerCase().charAt(e)) 
+            if(text.trim().toLowerCase().charAt(0) > array[half].get(attribute).toString().trim().toLowerCase().charAt(0)) 
             aux = 1; 
-        else if(text.trim().toLowerCase().charAt(8) < array[half].get(attribute).toString().trim().toLowerCase().charAt(8)) 
+        else if(text.trim().toLowerCase().charAt(0) < array[half].get(attribute).toString().trim().toLowerCase().charAt(0)) 
             aux = -1; 
 
         half = half * aux; 
